@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  backend:
+    image: <your-epic-username>/quirknotes_backend:latest
+    ports:
+      - "4000:4000"
+    environment:
+      - ENV=Docker
+    depends_on:
+      - mongodb
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+  frontend:
+    build:
+      context: ./path-to-your-frontend  # 替换为你前端代码的实际路径
+      dockerfile: Dockerfile_frontend   # 替换为你的前端Dockerfile名称，如果它与此不同
+    ports:
+      - "3000:3000"                     # 假设你的前端运行在3000端口
